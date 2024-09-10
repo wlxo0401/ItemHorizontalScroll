@@ -1,0 +1,59 @@
+# Xcode 프로젝트에서 버전 관리에 포함되지 않아야 할 파일 및 디렉토리
+
+## 사용자 설정 파일
+xcuserdata/
+
+## Xcode 8 이하 호환성 파일 (Xcode 9 이상에서 불필요)
+*.xcscmblueprint
+*.xccheckout
+
+## Xcode 3 이하 호환성 파일 (Xcode 4 이상에서 불필요)
+build/
+DerivedData/
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+## Objective-C/Swift 특정 파일
+*.hmap
+
+## 앱 패키징 파일
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## 플레이그라운드 파일
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift 패키지 매니저
+.build/
+
+# CocoaPods (필요에 따라 Pods/ 추가 가능)
+# Pods/
+
+# Carthage 빌드 파일
+Carthage/Build/
+
+# Accio 의존성 관리
+Dependencies/
+.accio/
+
+# fastlane 파일
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# 코드 인젝션 프로젝트
+iOSInjectionProject/
+
+# macOS 관련 파일
+.DS_Store
+**/.DS_Store
