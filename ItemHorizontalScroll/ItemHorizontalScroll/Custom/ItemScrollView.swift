@@ -37,6 +37,8 @@ final class ItemScrollView: UIScrollView {
     
     // Configure scroll view properties
     private func initScroll() {
+        self.showsHorizontalScrollIndicator = false
+        self.showsVerticalScrollIndicator = false
         self.alwaysBounceHorizontal = true
         self.backgroundColor = .white
         self.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)

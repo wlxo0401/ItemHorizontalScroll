@@ -8,8 +8,31 @@
 import UIKit
 import SnapKit
 
-
 class ViewController: UIViewController {
+    private lazy var customNavigationBar: UIView = {
+        let view: UIView = UIView()
+        view.backgroundColor = .white
+        
+        let label: UILabel = UILabel()
+        label.textColor = .black
+        label.font = .systemFont(ofSize: 24, weight: .heavy)
+        label.text = "My App"
+        
+        view.addSubview(label)
+        view.addSubview(self.itemScrollView)
+        
+        label.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(26)
+            $0.bottom.equalTo(self.itemScrollView.snp.top).offset(-8)
+        }
+        
+        self.itemScrollView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        return view
+    }()
+    
     // ItemScrollViewDelegate 준수를 명시적으로 선언
     private lazy var itemLabel: UILabel = {
         let label = UILabel()
@@ -32,6 +55,9 @@ class ViewController: UIViewController {
             guard let self = self else { return }
             self.loadDataSetOne()
         }, for: .touchUpInside)
+        
+        button.backgroundColor = .tintColor
+        button.layer.cornerRadius = 8
         return button
     }()
     
@@ -43,6 +69,9 @@ class ViewController: UIViewController {
             guard let self = self else { return }
             self.loadDataSetTwo()
         }, for: .touchUpInside)
+        
+        button.backgroundColor = .tintColor
+        button.layer.cornerRadius = 8
         return button
     }()
     
@@ -54,6 +83,9 @@ class ViewController: UIViewController {
             guard let self = self else { return }
             self.loadDataSetThree()
         }, for: .touchUpInside)
+        
+        button.backgroundColor = .tintColor
+        button.layer.cornerRadius = 8
         return button
     }()
     
@@ -63,42 +95,46 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.initUI()
+        self.loadDataSetOne()
     }
     
     private func initUI() {
-        self.view.backgroundColor = .gray
+        self.view.backgroundColor = .background
+        self.view.addSubview(self.customNavigationBar)
         self.view.addSubview(self.itemLabel)
-        self.view.addSubview(self.itemScrollView)
         self.view.addSubview(self.dataSetOneButton)
         self.view.addSubview(self.dataSetTwoButton)
         self.view.addSubview(self.dataSetThreeButton)
         
-        self.itemLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(24)
-            $0.bottom.equalTo(self.itemScrollView.snp.top).offset(-24)
-        }
-        
-        self.itemScrollView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+        self.customNavigationBar.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(80)
             $0.leading.trailing.equalToSuperview()
         }
+        
+        
         
         self.dataSetOneButton.snp.makeConstraints {
             $0.top.equalTo(self.itemScrollView.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview().inset(24)
-            $0.height.equalTo(24)
+            $0.height.equalTo(50)
         }
         
         self.dataSetTwoButton.snp.makeConstraints {
             $0.top.equalTo(self.dataSetOneButton.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview().inset(24)
-            $0.height.equalTo(24)
+            $0.height.equalTo(50)
         }
         
         self.dataSetThreeButton.snp.makeConstraints {
             $0.top.equalTo(self.dataSetTwoButton.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview().inset(24)
-            $0.height.equalTo(24)
+            $0.height.equalTo(50)
+        }
+        
+        self.itemLabel.snp.makeConstraints {
+            $0.top.equalTo(self.dataSetThreeButton.snp.bottom).offset(24)
+            $0.leading.trailing.equalToSuperview().inset(24)
         }
     }
     
