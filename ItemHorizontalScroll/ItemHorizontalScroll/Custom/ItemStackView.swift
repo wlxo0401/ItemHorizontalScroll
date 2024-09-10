@@ -7,12 +7,13 @@
 
 import UIKit
 
-// ItemStackViewDelegate 프로토콜 추가
+// Protocol for handling item selection in ItemStackView
 protocol ItemStackViewDelegate: AnyObject {
     func itemStackView(_ stackView: ItemStackView, didSelectItemAt index: Int)
 }
 
 final class ItemStackView: UIStackView {
+    // Underline view to indicate the selected item
     private let underLineView: UIView = {
         let view = UIView()
         view.backgroundColor = .green
@@ -20,15 +21,20 @@ final class ItemStackView: UIStackView {
         return view
     }()
     
+    // Array to store ItemView instances
     private var items: [ItemView] = [] {
         didSet {
             self.updateItems()
         }
     }
     
+    // Index of the currently selected item
     private var selectedIndex: Int = 0
     
+    // Delegate to handle item selection
     weak var itemStackViewDelegate: ItemStackViewDelegate?
+    
+    // MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,6 +45,7 @@ final class ItemStackView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // Initialize UI components
     private func initUI() {
         self.axis = .horizontal
         self.distribution = .fillProportionally
@@ -54,11 +61,13 @@ final class ItemStackView: UIStackView {
         }
     }
     
+    // Set the selected index
     func setSelectIndex(index: Int) {
         self.selectedIndex = index
         self.selectItem(at: index)
     }
     
+    // Configure the stack view with item data
     func setData(itemStrings: [String], preSelectIndex: Int?) {
         if let index = preSelectIndex {
             self.selectedIndex = index
@@ -81,11 +90,12 @@ final class ItemStackView: UIStackView {
         }
     }
     
+    // Update the arranged subviews
     private func updateItems() {
         // Remove existing subviews
         self.arrangedSubviews.forEach { $0.removeFromSuperview() }
             
-            // Add new subviews
+        // Add new subviews
         self.items.forEach { addArrangedSubview($0) }
             
         // Update layout immediately
@@ -94,6 +104,7 @@ final class ItemStackView: UIStackView {
         self.selectItem(at: selectedIndex)
     }
         
+    // Handle item selection
     private func selectItem(at index: Int) {
         self.selectedIndex = index
         self.itemStackViewDelegate?.itemStackView(self, didSelectItemAt: index)
@@ -103,6 +114,7 @@ final class ItemStackView: UIStackView {
             item.selectItem(isSelected: isSelected)
 
             if isSelected {
+                // Update underline position and width
                 self.underLineView.snp.remakeConstraints { make in
                     make.height.equalTo(2)
                     make.width.equalTo(item.snp.width)
@@ -110,6 +122,7 @@ final class ItemStackView: UIStackView {
                     make.bottom.equalToSuperview()
                 }
 
+                // Animate the underline movement
                 UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
                     self.layoutIfNeeded()
                 }
