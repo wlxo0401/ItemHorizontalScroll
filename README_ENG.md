@@ -2,7 +2,7 @@
 
 ## Overview
 
-ItemScrollView is a customizable horizontal scroll component for iOS applications, built with Swift and UIKit. It provides an easy-to-use interface for creating scrollable, selectable items with smooth animations and delegation support.
+ItemScrollView is a customizable horizontal scroll component for iOS applications, built with Swift and UIKit(SnapKit). It provides an easy-to-use interface for creating scrollable, selectable items with smooth animations and delegation support.
 
 <img src="https://github.com/wlxo0401/ItemHorizontalScroll/blob/main/SimulatorScreenRecording.gif" width="300" alt="ItemScrollView Demo">
 
