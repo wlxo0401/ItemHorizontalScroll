@@ -4,7 +4,7 @@
 
 ## 개요
 
-ItemScrollView는 iOS 애플리케이션을 위한 맞춤 설정 가능한 수평 스크롤 컴포넌트로, Swift와 UIKit을 사용하여 구축되었습니다. 스크롤 가능하고 선택 가능한 항목들을 부드러운 애니메이션과 델리게이션 지원으로 쉽게 만들 수 있는 인터페이스를 제공합니다.
+ItemScrollView는 iOS 애플리케이션을 위한 맞춤 설정 가능한 수평 스크롤 컴포넌트로, Swift와 UIKit(SnapKit)을 사용하여 구축되었습니다. 스크롤 가능하고 선택 가능한 항목들을 부드러운 애니메이션과 델리게이션 지원으로 쉽게 만들 수 있는 인터페이스를 제공합니다.
 
 <img src="https://github.com/wlxo0401/ItemHorizontalScroll/blob/main/SimulatorScreenRecording.gif" width="300" alt="ItemScrollView 데모">
 
